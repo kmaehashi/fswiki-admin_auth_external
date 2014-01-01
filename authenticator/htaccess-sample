@@ -1,0 +1,23 @@
+# Show an error message when the user cancelled authentication (this is optional)
+ErrorDocument	401	/~john/wiki/wiki.cgi?action=LOGIN&failed=2
+
+# Use LDAP authentication:
+<Files	"login.cgi">
+	AuthType		Basic
+	AuthName		"LDAP Authentication Sample"
+	AuthBasicProvider	ldap
+	AuthzLDAPAuthoritative	on
+	AuthLDAPURL		ldap://ldap.example.com/dc=ldap,dc=example,dc=com
+	Require			valid-user
+</Files>
+
+# or basic authentication:
+<Files  "login.cgi">
+	AuthType	Basic
+	AuthName	"Basic Authentication Sample"
+	AuthUserFile	/home/john/public_html/wiki/.htpasswd
+	Require		valid-user
+</Files>
+
+# or any other authentication module Apache supports...
+
